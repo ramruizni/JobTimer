@@ -1,8 +1,9 @@
 package com.valid.jobtimer
 
-import com.valid.jobtimer.viewmodels.MainViewModel
+import com.valid.jobtimer.viewmodels.TimesViewModel
 import org.koin.dsl.module.module
 
-val mainModule = module {
-    single { MainViewModel() }
+val timesModule = module {
+    single { TimesViewModel() }
 }
+

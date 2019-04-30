@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.DetailFragment">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical" android:weightSum="7">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+                      android:orientation="horizontal" android:layout_weight="1">
+
+            <ImageButton android:id="@+id/btnBack"
+                         android:layout_width="80dp" android:layout_height="match_parent"
+                         android:src="?android:attr/homeAsUpIndicator"
+                         android:background="@android:color/transparent"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="0"
+                      android:gravity="center" android:textSize="40sp"/>
+
+        </LinearLayout>
+
+        <ListView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="6"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

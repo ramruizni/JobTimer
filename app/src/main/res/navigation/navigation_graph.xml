@@ -4,6 +4,12 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation_graph"
             app:startDestination="@id/main">
 
-    <fragment android:id="@+id/main" android:name="com.valid.jobtimer.views.Main" android:label="main_fragment"
-              tools:layout="@layout/main_fragment"/>
+    <fragment android:id="@+id/main" android:name="com.valid.jobtimer.views.MainFragment" android:label="main_fragment"
+              tools:layout="@layout/main_fragment">
+        <action android:id="@+id/toDetail" app:destination="@id/detailFragment"/>
+    </fragment>
+    <fragment android:id="@+id/detailFragment" android:name="com.valid.jobtimer.views.DetailFragment"
+              android:label="detail_fragment" tools:layout="@layout/detail_fragment">
+        <action android:id="@+id/toMain" app:destination="@id/main"/>
+    </fragment>
 </navigation>
