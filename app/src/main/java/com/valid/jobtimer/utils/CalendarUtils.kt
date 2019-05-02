@@ -1,43 +1,87 @@
 package com.valid.jobtimer.utils
 
-import androidx.fragment.app.FragmentActivity
+import android.app.Application
+import android.util.Log
+import com.valid.jobtimer.R
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
-class CalendarUtils {
-    companion object {
+class CalendarUtils(var application: Application) {
 
-        private const val PREFS_FILENAME = "com.makuhita.jobtimer.prefs"
-        var format = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.US)
+    private val PREFS_FILENAME = "com.makuhita.jobtimer.prefs"
+    private val days = application.resources.getStringArray(R.array.days)
 
-        fun getDayString(date: Date): String {
-            return when(date.toString().subSequence(0, 2)) {
-                    "Mon" -> "Monday"
-                    "Tue" -> "Tuesday"
-                    "Wed" -> "Wednesday"
-                    "Thu" -> "Thursday"
-                    "Fri" -> "Friday"
-                    "Sat" -> "Saturday"
-                else -> {
-                    "Sunday"
-                }
+    private fun getCurrentDayString(): String {
+        Log.e("asd", Date().toString().subSequence(0, 3).toString())
+        return when (Date().toString().subSequence(0, 3)) {
+            "Mon" -> days[0]
+            "Tue" -> days[1]
+            "Wed" -> days[2]
+            "Thu" -> days[3]
+            "Fri" -> days[4]
+            else -> {
+                days[5]
             }
         }
+    }
 
-        fun saveTime(activity: FragmentActivity, type: String) {
-            val date = Date().time
+    fun saveTimeMillis(type: String, day: String, time: Long) {
+        val editor = application.getSharedPreferences(PREFS_FILENAME, 0).edit()
+        editor.putLong("$type - $day", time)
+        editor.apply()
+    }
 
-            val editor = activity.getSharedPreferences(PREFS_FILENAME, 0).edit()
-            editor.putLong("$type - Monday", date)
-            editor.apply()
+    fun saveTimeMillis(type: String) {
+        saveTimeMillis(type, getCurrentDayString(), Date().time)
+    }
+
+    fun getTimeMillis(type: String, day: String): Long {
+        val prefs = application.getSharedPreferences(PREFS_FILENAME, 0)
+        return prefs.getLong("$type - $day", 0L)
+    }
+
+    fun getTime(type: String, day: String): String {
+        return if (getTimeMillis(type, day) == 0L) {
+            "-"
+        } else {
+            SimpleDateFormat("HH:mm:ss", Locale.US).format(Date(getTimeMillis(type, day)))
         }
+    }
 
-        fun getTime(activity: FragmentActivity, type: String): Long {
-            val prefs = activity.getSharedPreferences(PREFS_FILENAME, 0)
-            val date = prefs.getLong("$type - Monday", 0)
-            return date
+    fun getDayTimeMillisWorked(day: String): Long {
+        val arrival = getTimeMillis("Arrival", day)
+        val departure = getTimeMillis("Departure", day)
+
+        return if (arrival == 0L) {
+            0
+        } else if (departure == 0L && day == getCurrentDayString()) {
+            Date().time - arrival
+        } else {
+            departure - arrival
         }
+    }
 
+    fun getWeekTimeMissing(): String {
+        var weekTimeMissing = TimeUnit.HOURS.toMillis(45)
+        for (day in days) {
+            weekTimeMissing -= getDayTimeMillisWorked(day)
+            Log.e("asd", "$day: ${getTimeMillis("Arrival", day)} - ${getTimeMillis("Departure", day)}")
+        }
+        Log.e("asd", "-")
+        return millisToFormattedString(weekTimeMissing)
+    }
+
+    fun millisToFormattedString(milliseconds: Long): String {
+        var millis = milliseconds
+
+        val hours = TimeUnit.MILLISECONDS.toHours(millis)
+        millis -= TimeUnit.HOURS.toMillis(hours)
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(millis)
+        millis -= TimeUnit.MINUTES.toMillis(minutes)
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(millis)
+
+        return "$hours:$minutes:$seconds"
     }
 
 }

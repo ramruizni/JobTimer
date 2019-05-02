@@ -17,13 +17,17 @@
                          android:src="?android:attr/homeAsUpIndicator"
                          android:background="@android:color/transparent"/>
 
-            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="0"
-                      android:gravity="center" android:textSize="40sp"/>
+            <TextView android:id="@+id/tvTimeMissing"
+                      android:layout_width="match_parent" android:layout_height="match_parent" android:text="0"
+                      android:gravity="center" android:textSize="50sp"/>
 
         </LinearLayout>
 
-        <ListView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="6"/>
-
+        <LinearLayout android:id="@+id/llDays"
+                      android:layout_width="match_parent" android:layout_height="0dp"
+                      android:orientation="vertical"
+                      android:layout_weight="6" android:weightSum="6">
+        </LinearLayout>
 
     </LinearLayout>
 

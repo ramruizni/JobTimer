@@ -26,8 +26,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.startTimer(activity!!)
-
         tvCount.setOnClickListener {
             findNavController().navigate(R.id.toDetail, null)
         }
@@ -37,11 +35,11 @@ class MainFragment : Fragment() {
         })
 
         btnArrival.setOnClickListener {
-            viewModel.setDayArrival(activity!!)
+            viewModel.setTime("Arrival")
         }
 
         btnDeparture.setOnClickListener {
-            viewModel.setDayDeparture(activity!!)
+            viewModel.setTime("Departure")
         }
     }
 

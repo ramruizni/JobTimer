@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:weightSum="3"
+android:padding="1dp">
+
+    <TextView android:id="@+id/tvDay"
+              android:layout_width="0dp" android:layout_height="match_parent"
+              android:layout_weight="1"
+    android:gravity="center"
+              android:textSize="20sp"
+    android:text="Wednesday"
+    android:textStyle="bold"/>
+
+    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:orientation="vertical"
+                  android:layout_weight="2" android:weightSum="2">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+                      android:layout_weight="1"
+                      android:orientation="horizontal"
+        android:background="@color/colorArrival">
+            <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+                      android:gravity="center"
+                      android:text="Arrival:"/>
+            <TextView android:id="@+id/tvArrival"
+                      android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+                      android:gravity="center"
+                      android:textSize="20dp"
+                      android:text="11:25:37"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+                      android:layout_weight="1"
+                      android:orientation="horizontal"
+        android:background="@color/colorDeparture">
+            <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+                      android:gravity="center"
+                      android:text="Departure:"/>
+            <TextView android:id="@+id/tvDeparture"
+                      android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+                      android:gravity="center"
+                      android:textSize="20dp"
+                      android:text="11:25:37"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
