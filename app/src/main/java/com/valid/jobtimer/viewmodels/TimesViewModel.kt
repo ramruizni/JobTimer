@@ -4,6 +4,8 @@ import android.os.Handler
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.valid.jobtimer.utils.CalendarUtils
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TimesViewModel(var calendarUtils: CalendarUtils) : ViewModel() {
 
@@ -25,19 +27,20 @@ class TimesViewModel(var calendarUtils: CalendarUtils) : ViewModel() {
     }
 
     fun setTime(type: String, day: String, time: String) {
-        calendarUtils.saveTimeMillis(type, day, time.toLong())
+        var timeToSave = time
+
+        if (time.contains(':')) {
+            timeToSave = SimpleDateFormat("HH:mm:ss", Locale.US).parse(time).time.toString()
+        }
+        calendarUtils.saveTimeMillis(type, day, timeToSave.toLong())
     }
 
     fun setTime(type: String) {
         calendarUtils.saveTimeMillis(type)
     }
 
-    fun getDayArrival(day: String): String {
-        return calendarUtils.getTime("Arrival", day)
-    }
-
-    fun getDayDeparture(day: String): String {
-        return calendarUtils.getTime("Departure", day)
+    fun getTime(type: String, day: String): String {
+        return calendarUtils.getTime(type, day)
     }
 
     fun updateWeekTimeMissing() {

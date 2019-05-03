@@ -10,11 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.valid.jobtimer.R
 import com.valid.jobtimer.viewmodels.TimesViewModel
 import kotlinx.android.synthetic.main.main_fragment.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MainFragment : Fragment() {
 
-    private val viewModel by viewModel<TimesViewModel>()
+    private val viewModel: TimesViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,17 +30,10 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.toDetail, null)
         }
 
-        viewModel.weekTimeMissing.observe(this, Observer {
-            tvCount.text = it.toString()
-        })
+        viewModel.weekTimeMissing.observe(this, Observer { tvCount.text = it.toString() })
 
-        btnArrival.setOnClickListener {
-            viewModel.setTime("Arrival")
-        }
-
-        btnDeparture.setOnClickListener {
-            viewModel.setTime("Departure")
-        }
+        btnArrival.setOnClickListener { viewModel.setTime("Arrival") }
+        btnDeparture.setOnClickListener { viewModel.setTime("Departure") }
     }
 
 }

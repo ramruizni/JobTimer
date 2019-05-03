@@ -19,7 +19,3 @@ _
 /app/src/main/java/com/valid/jobtimer/KoinApp.kt,6/e/6e3f5686753c0ecdafbab7d05c453ff9da4693cb
 c
 3app/src/main/java/com/valid/jobtimer/KoinModules.kt,4/5/45d244432501729593827e5d9e1b6fdfa42b3ddc
-p
-@app/src/main/java/com/valid/jobtimer/viewmodels/MainViewModel.kt,d/3/d380c69f760c0de795dac0d0324d1120fffe1b83
-b
-2app/src/main/java/com/valid/jobtimer/views/Main.kt,d/4/d4ad91931b48ca5f1f322b94394c5dc9c1c215f3

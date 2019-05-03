@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#D30302</color>
+    <color name="colorPrimaryDark">#BA0B02</color>
+    <color name="colorAccent">#92FFD3</color>
 
-    <color name="colorArrival">@android:color/holo_green_light</color>
-    <color name="colorDeparture">@android:color/holo_red_light</color>
+    <color name="colorArrival">#F20412</color>
+    <color name="colorDeparture">#D30302</color>
+
+    <color name="colorText">#92FFD3</color>
+    <color name="colorBackground">#FF041F</color>
 </resources>

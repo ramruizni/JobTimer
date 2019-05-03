@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class CalendarUtils(var application: Application) {
 
-    private val PREFS_FILENAME = "com.makuhita.jobtimer.prefs"
+    private val PREFS_FILENAME: String = "com.makuhita.jobtimer.prefs"
     private val days = application.resources.getStringArray(R.array.days)
 
     private fun getCurrentDayString(): String {
