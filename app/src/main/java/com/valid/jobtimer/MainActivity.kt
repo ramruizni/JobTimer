@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun wipePrefs() {
-        application.getSharedPreferences(Companion.PREFS_FILENAME, 0).edit().clear().apply()
+        application.getSharedPreferences(PREFS_FILENAME, 0).edit().clear().apply()
     }
 
     companion object {

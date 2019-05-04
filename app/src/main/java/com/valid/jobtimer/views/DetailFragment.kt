@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -16,6 +17,8 @@ import kotlinx.android.synthetic.main.detail_fragment.*
 import kotlinx.android.synthetic.main.detail_list_item.view.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
+import androidx.appcompat.app.AlertDialog
+
 
 class DetailFragment : Fragment() {
 
@@ -54,6 +57,9 @@ class DetailFragment : Fragment() {
         dayBtn.tvDeparture.text = viewModel.getTime("Departure", day)
         dayBtn.tvDeparture.setOnClickListener { showEditDialog(dayBtn.tvDeparture,"Departure", day) }
 
+        dayBtn.btnDeleteArrival.setOnClickListener { showDeleteDialog(dayBtn.tvArrival, "Arrival", day) }
+        dayBtn.btnDeleteDeparture.setOnClickListener { showDeleteDialog(dayBtn.tvDeparture, "Departure", day) }
+
         return dayBtn
     }
 
@@ -71,5 +77,18 @@ class DetailFragment : Fragment() {
         )
         mTimePicker.setTitle("Select Time")
         mTimePicker.show()
+    }
+
+    private fun showDeleteDialog(textView: TextView, type: String, day: String) {
+        AlertDialog.Builder(context!!)
+            .setTitle("Delete entry")
+            .setMessage("Are you sure you want to delete $day's $type?")
+            .setPositiveButton(android.R.string.yes) { _, _ ->
+                viewModel.deleteTime(type, day)
+                textView.text = "-"
+            }
+            .setNegativeButton(android.R.string.no, null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
     }
 }

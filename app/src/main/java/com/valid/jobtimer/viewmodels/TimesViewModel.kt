@@ -41,4 +41,8 @@ class TimesViewModel(var calendarUtils: CalendarUtils) : ViewModel() {
     fun updateWeekTimeMissing() {
         weekTimeMissing.value = calendarUtils.getWeekTimeMissing()
     }
+
+    fun deleteTime(type: String, day: String) {
+        calendarUtils.deleteTime(type, day)
+    }
 }

@@ -13,7 +13,6 @@ class CalendarUtils(var application: Application) {
     private val days = application.resources.getStringArray(R.array.days)
 
     private fun getCurrentDayString(): String {
-        Log.e("asd", Date().toString().subSequence(0, 3).toString())
         return when (Date().toString().subSequence(0, 3)) {
             "Mon" -> days[0]
             "Tue" -> days[1]
@@ -56,7 +55,8 @@ class CalendarUtils(var application: Application) {
         return if (arrival == 0L) {
             0
         } else if (departure == 0L && day == getCurrentDayString()) {
-            Date().time - arrival
+            // I'm hot-pocketing
+            SimpleDateFormat("HH:mm:ss", Locale.US).parse(SimpleDateFormat("HH:mm:ss", Locale.US).format(Date().time)).time - arrival
         } else {
             departure - arrival
         }
@@ -82,6 +82,12 @@ class CalendarUtils(var application: Application) {
         val seconds = TimeUnit.MILLISECONDS.toSeconds(millis)
 
         return "$hours:$minutes:$seconds"
+    }
+
+    fun deleteTime(type: String, day: String) {
+        val editor = application.getSharedPreferences(PREFS_FILENAME, 0).edit()
+        editor.putLong("$type - $day", 0L)
+        editor.apply()
     }
 
 }
