@@ -27,12 +27,7 @@ class TimesViewModel(var calendarUtils: CalendarUtils) : ViewModel() {
     }
 
     fun setTime(type: String, day: String, time: String) {
-        var timeToSave = time
-
-        if (time.contains(':')) {
-            timeToSave = SimpleDateFormat("HH:mm:ss", Locale.US).parse(time).time.toString()
-        }
-        calendarUtils.saveTimeMillis(type, day, timeToSave.toLong())
+        calendarUtils.saveTimeMillis(type, day, time)
     }
 
     fun setTime(type: String) {

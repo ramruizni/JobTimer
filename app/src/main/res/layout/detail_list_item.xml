@@ -4,17 +4,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:weightSum="3"
-android:padding="1dp"
-android:background="@color/colorBackground">
+              android:padding="1dp"
+              android:background="@color/colorBackground">
 
     <TextView android:id="@+id/tvDay"
               android:layout_width="0dp" android:layout_height="match_parent"
               android:layout_weight="1"
-    android:gravity="center"
+              android:gravity="center"
               android:textSize="20sp"
-    android:text="Wednesday"
-    android:textStyle="bold"
-    android:textColor="@color/colorText"/>
+              android:text="Wednesday"
+              android:textStyle="bold"
+              android:textColor="@color/colorText"/>
 
     <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:orientation="vertical"
                   android:layout_weight="2" android:weightSum="2">
@@ -22,32 +22,40 @@ android:background="@color/colorBackground">
         <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
                       android:layout_weight="1"
                       android:orientation="horizontal"
-        android:background="@color/colorArrival">
+                      android:background="@color/colorArrival">
             <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
                       android:gravity="center"
                       android:text="Arrival:"
                       android:textColor="@color/colorText"/>
             <TextView android:id="@+id/tvArrival"
-                      android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+                      android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1.5"
                       android:gravity="center"
                       android:textSize="20dp"
                       android:text="11:25:37"
                       android:textColor="@color/colorText"/>
+            <ImageView android:layout_width="0dp" android:layout_height="match_parent"
+                       android:layout_weight="0.5"
+                       android:padding="5dp"
+                       android:src="@android:drawable/ic_menu_close_clear_cancel"/>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
                       android:layout_weight="1"
                       android:orientation="horizontal"
-        android:background="@color/colorDeparture">
+                      android:background="@color/colorDeparture">
             <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
                       android:gravity="center"
                       android:text="Departure:"
                       android:textColor="@color/colorText"/>
             <TextView android:id="@+id/tvDeparture"
-                      android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+                      android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1.5"
                       android:gravity="center"
                       android:textSize="20dp"
                       android:text="11:25:37"
                       android:textColor="@color/colorText"/>
+            <ImageView android:layout_width="0dp" android:layout_height="match_parent"
+                       android:layout_weight="0.5"
+                       android:padding="5dp"
+                       android:src="@android:drawable/ic_menu_close_clear_cancel"/>
         </LinearLayout>
 
     </LinearLayout>

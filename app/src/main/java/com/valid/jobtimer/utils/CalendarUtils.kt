@@ -26,14 +26,14 @@ class CalendarUtils(var application: Application) {
         }
     }
 
-    fun saveTimeMillis(type: String, day: String, time: Long) {
+    fun saveTimeMillis(type: String, day: String, time: String) {
         val editor = application.getSharedPreferences(PREFS_FILENAME, 0).edit()
-        editor.putLong("$type - $day", time)
+        editor.putLong("$type - $day", SimpleDateFormat("HH:mm:ss", Locale.US).parse(time).time)
         editor.apply()
     }
 
     fun saveTimeMillis(type: String) {
-        saveTimeMillis(type, getCurrentDayString(), Date().time)
+        saveTimeMillis(type, getCurrentDayString(), SimpleDateFormat("HH:mm:ss", Locale.US).format(Date().time))
     }
 
     fun getTimeMillis(type: String, day: String): Long {
